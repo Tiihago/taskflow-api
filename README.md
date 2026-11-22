@@ -1,4 +1,6 @@
-# âœ… TaskFlow API
+# ✅ TaskFlow API
+
+![TaskFlow API](docs/cover.png)
 
 ![CI](https://github.com/Tiihago/taskflow-api/actions/workflows/ci.yml/badge.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)
@@ -7,56 +9,56 @@
 ![JWT](https://img.shields.io/badge/JWT-000000?logo=jsonwebtokens&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
-ðŸ‡§ðŸ‡· API REST para gerenciamento de tarefas, com cadastro de usuÃ¡rios, login com JWT e tarefas privadas por usuÃ¡rio.
+🇧🇷 API REST para gerenciamento de tarefas, com cadastro de usuários, login com JWT e tarefas privadas por usuário.
 
-ðŸ‡ºðŸ‡¸ REST API for task management with user registration, JWT authentication and per-user private tasks.
+🇺🇸 REST API for task management with user registration, JWT authentication and per-user private tasks.
 
-## âœ¨ Funcionalidades | Features
+## ✨ Funcionalidades | Features
 
-- Cadastro e login de usuÃ¡rios com senha criptografada (**bcrypt**) e token **JWT**
+- Cadastro e login de usuários com senha criptografada (**bcrypt**) e token **JWT**
 - CRUD completo de tarefas: criar, listar, buscar, atualizar e remover
-- Cada usuÃ¡rio sÃ³ enxerga e altera **as prÃ³prias tarefas**
-- Listagem com **paginaÃ§Ã£o** e **filtro por status** (`pending`, `in_progress`, `done`)
-- ValidaÃ§Ã£o de dados com **Zod** e mensagens de erro claras
-- Tratamento centralizado de erros e cÃ³digos HTTP corretos (400, 401, 404, 409)
+- Cada usuário só enxerga e altera **as próprias tarefas**
+- Listagem com **paginação** e **filtro por status** (`pending`, `in_progress`, `done`)
+- Validação de dados com **Zod** e mensagens de erro claras
+- Tratamento centralizado de erros e códigos HTTP corretos (400, 401, 404, 409)
 - **17 testes automatizados** (Jest + Supertest) rodando no **GitHub Actions**
 - **Docker Compose** com PostgreSQL para subir tudo com um comando
 
-## ðŸ› ï¸ Tecnologias | Tech stack
+## 🛠️ Tecnologias | Tech stack
 
-Node.js Â· Express 5 Â· PostgreSQL Â· JWT Â· bcrypt Â· Zod Â· Jest Â· Supertest Â· Docker Â· GitHub Actions
+Node.js · Express 5 · PostgreSQL · JWT · bcrypt · Zod · Jest · Supertest · Docker · GitHub Actions
 
-## ðŸ—‚ï¸ Estrutura | Project structure
+## 🗂️ Estrutura | Project structure
 
 ```
 src/
-â”œâ”€â”€ app.js                  # monta o Express (recebe o banco por injeÃ§Ã£o de dependÃªncia)
-â”œâ”€â”€ server.js               # inicia o servidor
-â”œâ”€â”€ config/env.js           # variÃ¡veis de ambiente
-â”œâ”€â”€ db/                     # conexÃ£o e schema SQL
-â”œâ”€â”€ middlewares/            # autenticaÃ§Ã£o, validaÃ§Ã£o e erros
-â”œâ”€â”€ modules/
-â”‚   â”œâ”€â”€ users/              # cadastro, login e perfil
-â”‚   â””â”€â”€ tasks/              # CRUD de tarefas
-â””â”€â”€ utils/AppError.js
-tests/                      # testes de integraÃ§Ã£o
+├── app.js                  # monta o Express (recebe o banco por injeção de dependência)
+├── server.js               # inicia o servidor
+├── config/env.js           # variáveis de ambiente
+├── db/                     # conexão e schema SQL
+├── middlewares/            # autenticação, validação e erros
+├── modules/
+│   ├── users/              # cadastro, login e perfil
+│   └── tasks/              # CRUD de tarefas
+└── utils/AppError.js
+tests/                      # testes de integração
 ```
 
-Cada mÃ³dulo segue a separaÃ§Ã£o **rotas â†’ serviÃ§o â†’ repositÃ³rio**:
-- **rotas**: recebem a requisiÃ§Ã£o HTTP e validam os dados
-- **serviÃ§o**: regras de negÃ³cio
-- **repositÃ³rio**: consultas SQL ao banco
+Cada módulo segue a separação **rotas → serviço → repositório**:
+- **rotas**: recebem a requisição HTTP e validam os dados
+- **serviço**: regras de negócio
+- **repositório**: consultas SQL ao banco
 
-## ðŸš€ Como rodar | Getting started
+## 🚀 Como rodar | Getting started
 
-### OpÃ§Ã£o 1: rÃ¡pido, sem instalar banco (banco em memÃ³ria)
+### Opção 1: rápido, sem instalar banco (banco em memória)
 
 ```bash
 npm install
 npm run dev:memory
 ```
 
-### OpÃ§Ã£o 2: com Docker e PostgreSQL
+### Opção 2: com Docker e PostgreSQL
 
 ```bash
 docker compose up --build
@@ -70,21 +72,21 @@ A API sobe em `http://localhost:3000`.
 npm test
 ```
 
-## ðŸ“¡ Endpoints
+## 📡 Endpoints
 
-| MÃ©todo | Rota | DescriÃ§Ã£o | Auth |
+| Método | Rota | Descrição | Auth |
 |---|---|---|---|
-| GET | `/health` | Status da API | â€” |
-| POST | `/auth/register` | Cadastra um usuÃ¡rio | â€” |
-| POST | `/auth/login` | Faz login e retorna o token | â€” |
-| GET | `/users/me` | Dados do usuÃ¡rio logado | âœ… |
-| GET | `/tasks?status=&page=&limit=` | Lista as tarefas | âœ… |
-| POST | `/tasks` | Cria uma tarefa | âœ… |
-| GET | `/tasks/:id` | Busca uma tarefa | âœ… |
-| PATCH | `/tasks/:id` | Atualiza uma tarefa | âœ… |
-| DELETE | `/tasks/:id` | Remove uma tarefa | âœ… |
+| GET | `/health` | Status da API | — |
+| POST | `/auth/register` | Cadastra um usuário | — |
+| POST | `/auth/login` | Faz login e retorna o token | — |
+| GET | `/users/me` | Dados do usuário logado | ✅ |
+| GET | `/tasks?status=&page=&limit=` | Lista as tarefas | ✅ |
+| POST | `/tasks` | Cria uma tarefa | ✅ |
+| GET | `/tasks/:id` | Busca uma tarefa | ✅ |
+| PATCH | `/tasks/:id` | Atualiza uma tarefa | ✅ |
+| DELETE | `/tasks/:id` | Remove uma tarefa | ✅ |
 
-Rotas com âœ… exigem o header `Authorization: Bearer <token>`.
+Rotas com ✅ exigem o header `Authorization: Bearer <token>`.
 
 ### Exemplo de uso
 
@@ -105,7 +107,7 @@ curl -X POST http://localhost:3000/tasks \
   -H "Authorization: Bearer SEU_TOKEN" \
   -d '{"title":"Estudar Node.js","dueDate":"2026-12-31"}'
 
-# 4. Listar tarefas concluÃ­das
+# 4. Listar tarefas concluídas
 curl "http://localhost:3000/tasks?status=done" -H "Authorization: Bearer SEU_TOKEN"
 ```
 
@@ -128,12 +130,12 @@ Resposta da listagem:
 }
 ```
 
-## ðŸ”® PrÃ³ximos passos | Roadmap
+## 🔮 Próximos passos | Roadmap
 
-- [ ] DocumentaÃ§Ã£o interativa com Swagger
+- [ ] Documentação interativa com Swagger
 - [ ] Refresh token
 - [ ] Deploy em nuvem
 
-## ðŸ‘¤ Autor | Author
+## 👤 Autor | Author
 
-**T.Ortiiz** Â· [LinkedIn](https://www.linkedin.com/in/thiago-ortiz-387094109/) Â· [GitHub](https://github.com/Tiihago)
+**T.Ortiiz** · [LinkedIn](https://www.linkedin.com/in/thiago-ortiz-387094109/) · [GitHub](https://github.com/Tiihago)

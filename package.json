@@ -1,0 +1,40 @@
+{
+  "name": "taskflow-api",
+  "version": "1.0.0",
+  "description": "API REST de gerenciamento de tarefas com autenticação JWT, Node.js, Express e PostgreSQL",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "dev:memory": "node --watch src/server.js --memory",
+    "test": "jest --runInBand"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "postgresql",
+    "jwt",
+    "rest-api"
+  ],
+  "author": "T.Ortiiz",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.1",
+    "pg-mem": "^3.0.14",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "supertest": "^7.3.2"
+  }
+}

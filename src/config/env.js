@@ -1,0 +1,15 @@
+require('dotenv').config({ quiet: true });
+
+const env = {
+  nodeEnv: process.env.NODE_ENV || 'development',
+  port: Number(process.env.PORT) || 3000,
+  databaseUrl: process.env.DATABASE_URL,
+  jwtSecret: process.env.JWT_SECRET || 'dev-secret-troque-em-producao',
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1d',
+};
+
+if (env.nodeEnv === 'production' && !process.env.JWT_SECRET) {
+  throw new Error('A variável JWT_SECRET é obrigatória em produção.');
+}
+
+module.exports = env;
